@@ -1,3 +1,9 @@
-name: PidFile
+name: A520
 main: net.servertube.pidfile.PidFile
-version: 0.1
+version: 0.3
+commands:
+  pid:
+    description: Return Bukkit PID.
+    usage: /<command>
+    permission: op
+    permission-message: You don't have <permission>
