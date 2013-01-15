@@ -21,33 +21,41 @@ public class PidFile extends JavaPlugin {
         pid = pid.substring(0, pid.indexOf("@"));
         return pid;
     }
+    
+    private void SavePID(){
+        String pid=GetPID();
+        getLogger().info("Server PID: " + pid);
+        FileWriter fw = null;
+        BufferedWriter fwout = null;
+        try {
+            fw = new FileWriter("server.pid");
+            fwout = new BufferedWriter(fw);
+            fwout.write(pid);
+            fwout.close();
+            fw.close();
+        } catch (IOException ex) {
+            getLogger().log(Level.WARNING, "Error writing server.pid file", ex);
+        } finally {
+            fw = null;
+            fwout = null;
+        }
+    }
+    
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
-    if (cmd.getName().equalsIgnoreCase("pid")){ // If the player typed /basic then do the following...
+    if (cmd.getName().equalsIgnoreCase("pid")){ 
                 sender.sendMessage("Server PID is: " + GetPID());
                 return true;
         }
+    else if (cmd.getName().equalsIgnoreCase("savepid") || cmd.getName().equalsIgnoreCase("spid")){ 
+        SavePID();
+    }
         return false;
     }
     
   @Override
   public void onEnable() {
-    String pid=GetPID();
-    getLogger().info("Server PID: " + pid);
-    FileWriter fw = null;
-    BufferedWriter fwout = null;
-    try {
-      fw = new FileWriter("server.pid");
-      fwout = new BufferedWriter(fw);
-      fwout.write(pid);
-      fwout.close();
-      fw.close();
-    } catch (IOException ex) {
-      getLogger().log(Level.WARNING, "Error writing server.pid file", ex);
-    } finally {
-      fw = null;
-      fwout = null;
-    }
+    SavePID();
   }
 
   @Override
