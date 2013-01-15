@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.command.*;
 import java.lang.management.ManagementFactory;
 
 /**
@@ -20,7 +21,14 @@ public class PidFile extends JavaPlugin {
         pid = pid.substring(0, pid.indexOf("@"));
         return pid;
     }
-    
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
+    if (cmd.getName().equalsIgnoreCase("pid")){ // If the player typed /basic then do the following...
+                sender.sendMessage("Server PID is: " + GetPID());
+                return true;
+        }
+        return false;
+    }
     
   @Override
   public void onEnable() {
