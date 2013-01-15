@@ -1,0 +1,3 @@
+name: PidFile
+main: net.servertube.pidfile.PidFile
+version: 0.2
