@@ -6,18 +6,25 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import org.bukkit.plugin.java.JavaPlugin;
-import sun.management.ManagementFactory;
+import java.lang.management.ManagementFactory;
 
 /**
  *
- * @author Sebastian "prodigy" G.
+ * @author A520
+ * @version 0.2
  */
 public class PidFile extends JavaPlugin {
 
+    public String GetPID(){
+        String pid = ManagementFactory.getRuntimeMXBean().getName();
+        pid = pid.substring(0, pid.indexOf("@"));
+        return pid;
+    }
+    
+    
   @Override
   public void onEnable() {
-    String pid = ManagementFactory.getRuntimeMXBean().getName();
-    pid = pid.substring(0, pid.indexOf("@"));
+    String pid=GetPID();
     getLogger().info("Server PID: " + pid);
     FileWriter fw = null;
     BufferedWriter fwout = null;
