@@ -1,3 +1,8 @@
-/PidFile/nbproject/private/
-/build/
-/dist/
+PidFile/nbproject/private/
+build/
+dist/
+
+# Package Files #
+*.jar
+*.war
+*.ear
