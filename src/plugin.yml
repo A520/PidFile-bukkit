@@ -1,4 +1,4 @@
-name: A520
+name: PidFile
 main: net.servertube.pidfile.PidFile
 version: 0.4
 commands:
