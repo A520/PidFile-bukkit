@@ -60,6 +60,6 @@ public class PidFile extends JavaPlugin {
 
   @Override
   public void onDisable() {
-    new File("server.pid").delete();
+    //new File("server.pid").delete();
   }
 }
